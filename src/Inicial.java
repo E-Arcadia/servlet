@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controle.ControleAluno;
+import entidade.Aluno;
+
 @WebServlet("/Inicial")
 public class Inicial extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public Inicial() {
 		super();
+		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,6 +27,9 @@ public class Inicial extends HttpServlet {
 		System.out.println("Acionado o método GET");
 		String Nome = request.getParameter("nom");
 		String Fone = request.getParameter("fon");
+		
+		ControleAluno.AddAluno(new Aluno(Nome, Fone));
+		
 
 		PrintWriter saida = response.getWriter();
 		saida.println("Nome recebido: " + Nome);
